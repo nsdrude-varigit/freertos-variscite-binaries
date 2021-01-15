@@ -50,7 +50,7 @@ verify_configuration() {
 
 # Make sure device tree with m4 or m7 support is used
 verify_machine_model() {
-    if [[ "${MACHINE_LC}" != *"${CM_TYPE}"* ]]; then
+    if [ -n "${UBOOT_USE_M4}" ] && [[ "${MACHINE_LC}" != *"${CM_TYPE}"* ]]; then
         echo ""
         echo "Error: /sys/bus/soc/devices/soc0/machine does not contain ${CM_TYPE}"
         echo "Please reboot with correct device tree file"
@@ -63,7 +63,7 @@ verify_machine_model() {
 
 # Make sure use_m4 or use_m7 u-boot environment variable is set
 verify_uboot_env() {
-    if [ "${UBOOT_USE_M4_VALUE}" != "yes" ]; then
+    if [ -n "${UBOOT_USE_M4}" ] && [ "${UBOOT_USE_M4_VALUE}" != "yes" ]; then
         echo ""
         echo "Error: u-boot environment variable ${UBOOT_USE_M4} != yes"
         echo "Please run: 'fw_setenv ${UBOOT_USE_M4} yes' and reboot"
