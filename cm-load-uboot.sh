@@ -7,6 +7,13 @@ readonly DIR_FIRMWARE=${DIR_SCRIPT}/firmware
 
 source ${DIR_SCRIPT}/cm-common.sh
 
+if [ -z ${LOAD_ADDR_DDR} ]; then
+  echo ""
+  echo "Error: Loading from u-boot not supported for this module, see wiki"
+  echo ""
+  exit
+fi
+
 # Initialize default DTB if not already initialized
 if [ -z ${DTB} ]; then
   DTB=${DEFAULT_DTB}
