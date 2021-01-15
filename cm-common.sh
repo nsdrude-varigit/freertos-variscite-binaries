@@ -12,15 +12,6 @@ readonly DIR_ELF="/lib/firmware"
 readonly MACHINE="$(cat /sys/bus/soc/devices/soc0/machine)"
 readonly MACHINE_LC=$(echo "$MACHINE" | tr '[:upper:]' '[:lower:]')
 
-# Get SOC
-SOC="$(cat /sys/bus/soc/devices/soc0/soc_id)"
-
-# Strip SOC i. prefix
-SOC=${SOC:2}
-
-# Convert SOC to lower case
-SOC=$(echo "$SOC" | tr '[:upper:]' '[:lower:]')
-
 # Verify SOC is supported
 case $MACHINE in
   *" DART-MX8M "*)
@@ -38,6 +29,10 @@ case $MACHINE in
   *" VAR-SOM-MX8M-NANO "*)
     echo "Detected VAR-SOM-MX8M-NANO"
     source ${DIR_SCRIPT}/configs/imx8mn-var-som.config
+    ;;
+  *" VAR-SOM-MX8X "*)
+    echo "Detected VAR-SOM-MX8X"
+    source ${DIR_SCRIPT}/configs/imx8qxp-var-som.config
     ;;
   *)
     echo "Unsupported MACHINE ${MACHINE}"
