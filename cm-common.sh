@@ -18,7 +18,7 @@ case $MACHINE in
     echo "Detected DART-MX8M"
     source ${DIR_SCRIPT}/configs/imx8mq-var-dart.config
     ;;
-  *" DART-MX8M-MINI "*)
+  *" DART-MX8M-MINI"*)
     echo "Detected DART-MX8M-MINI"
     source ${DIR_SCRIPT}/configs/imx8mm-var-dart.config
     ;;
@@ -33,6 +33,10 @@ case $MACHINE in
   *" VAR-SOM-MX8X "*)
     echo "Detected VAR-SOM-MX8X"
     source ${DIR_SCRIPT}/configs/imx8qxp-var-som.config
+    ;;
+  *"-MX8 "*)
+    echo "Detected VAR-SOM-MX8 or SPEAR-MX8"
+    source ${DIR_SCRIPT}/configs/imx8qm-var-som.config
     ;;
   *)
     echo "Unsupported MACHINE ${MACHINE}"
